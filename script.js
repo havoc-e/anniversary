@@ -232,28 +232,29 @@ function startMemoryHighlights() {
     // VIDEO
     // =========================
 
-    if (next.tagName === "VIDEO") {
+if (next.tagName === "VIDEO") {
 
-      // Lower background music
-      fadeMusicTo(0.05, 800);
+  const music = document.getElementById("backgroundMusic");
 
-      next.currentTime = 0;
-      next.muted = false;
-      next.volume = 1;
+  // Lower background music, but DON'T pause it
+  fadeMusicTo(0.05, 800);
 
-      next.play().catch(error => {
-        console.log("Video autoplay blocked:", error);
-      });
+  next.currentTime = 0;
+  next.muted = false;
+  next.volume = 1;
 
-      next.onended = () => {
+  next.play().catch(error => {
+    console.log("Video playback blocked:", error);
+  });
 
-        // Restore music
-        fadeMusicTo(0.30, 800);
+  next.onended = () => {
 
-        showNext();
-      };
+    // Bring background music back
+    fadeMusicTo(0.30, 800);
 
-    }
+    showNext();
+  };
+}
 
 
     // =========================
