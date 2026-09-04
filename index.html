@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Our Story — Anniversary</title>
+  <meta name="theme-color" content="#0b0b12">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <audio id="backgroundMusic" loop>
+    <source src="photos/music.mp3" type="audio/mpeg">
+  </audio>
+  <div id="gate" class="screen">
+    <div class="password">
+      <div class="eyebrow">A little secret</div>
+      <h1>For you.</h1>
+      <p>Hint: Out First Date</p>
+      <input id="pass" type="password" placeholder="Enter the password">
+      <button class="btn" onclick="unlock()">Enter our story</button>
+      <div id="error" class="error"></div>
+    </div>
+  </div>
+
+
+  <main id="site">
+    <section class="screen hero">
+      <div>
+        <div class="eyebrow" id="heroEyebrow"></div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+        <button class="btn" onclick="document.querySelector('#details').scrollIntoView()">Begin ↓</button>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="section" id="details">
+        <div class="eyebrow">01 — The details</div>
+        <h2>Things I remember.</h2>
+        <p class="lead">Tap each one. Some things are meant to be discovered slowly.</p>
+        <div class="grid" id="detailsGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="eyebrow">02 — Our timeline</div>
+        <h2>How we got here.</h2>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="section">
+        <div class="eyebrow">03 — Little things</div>
+        <h2>Things I notice about you.</h2>
+        <p class="quote" id="quote"></p>
+      </section>
+
+      <section class="section">
+        <div class="eyebrow">04 — Across the distance</div>
+        <h2 id="distanceTitle"></h2>
+        <p class="lead" id="distanceText"></p>
+      </section>
+
+      <section class="section">
+        <div class="eyebrow">05 — Our soundtrack</div>
+        <h2>Songs that feel like us.</h2>
+        <div class="grid" id="songs"></div>
+      </section>
+
+      <section class="section">
+        <div class="eyebrow">06 — The memories</div>
+        <h2>A few pieces of us.</h2>
+        <div class="media" id="photos"></div>
+      </section>
+
+      <section class="section">
+        <div class="eyebrow">07 — From me to you</div>
+        <h2>A letter.</h2>
+        <div class="letter" id="letter"></div>
+      </section>
+
+      <div class="footer">Made with intention · <span id="footerNames"></span></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
