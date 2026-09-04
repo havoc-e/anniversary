@@ -10,7 +10,7 @@ const content = {
 
   hero: {
     eyebrow: "A little world I made for you",
-    title: "Happy Anniversary, HER NAME.",
+    title: "Happy Anniversary, hayete❤️",
     subtitle: "Even from different places, there are a thousand little ways to be close."
   },
 
@@ -31,12 +31,12 @@ const content = {
 
   timeline: [
     {date:"2015", title:"Where it began", text:"At Bassam Merhi's apartment in Dubai (2015). Your name was brought up"},
-    {date:"NOV 19, 2017", title:"A favorite chapter", text:"First Instagram message"},
-    {date:"JUN 23, 2018", title:"A favorite chapter", text:"First WhatsApp message", photo:"photos/photo-18.jpg"},
-    {date:"AUG 16, 2018", title:"A favorite chapter", text:"First WhatsApp picture", photo:"photos/photo-17.jpg"},
-    {date:"SEP 04, 2023", title:"A moment that changed things (For me at least)", text:"Date at SIP."},
+    {date:"NOV 19, 2017", title:"First Instagram message", text:"", photo:"photos/photo-19.png"},
+    {date:"JUN 23, 2018", title:"First WhatsApp message", text:"", photo:"photos/photo-18.jpg"},
+    {date:"AUG 16, 2018", title:"First WhatsApp picture", text:"", photo:"photos/photo-17.jpg"},
+    {date:"SEP 04, 2023", title:"A moment that changed things (For me at least🙄)", text:"Date at SIP."},
     {date:"AUG 28, 2024", title:"So Stressed", text:"Date at Steak Bar Sushi."},
-    {date:"SEP 03, 2024", title:"Anniversary", text:"Date at Kalei."}
+    {date:"SEP 03, 2024", title:"Anniversary", text:"Date at Kalei.", photo:"photos/photo-1.jpg"}
   ],
 
   littleThings: "There are so many little things about you that I don't think you realize I notice. The way your laugh changes when something genuinely catches you off guard, the little words and expressions you use without thinking, the way you get excited when you're talking about something you love. I notice the way your mood shows in the smallest things, the way you care about details, and all those small pieces of you that might seem ordinary to everyone else, but to me, they're not ordinary at all. They're the little things that make you you, and somehow, after two years, I still find myself loving you a little more because of them.",
@@ -53,7 +53,6 @@ const content = {
   ],
 
 photos: [
-  { type: "image", src: "photos/photo-1.jpg" },
   { type: "image", src: "photos/photo-2.jpg" },  
   { type: "image", src: "photos/photo-3.jpg" },
   { type: "image", src: "photos/photo-4.jpg" },
@@ -106,24 +105,18 @@ function unlock(){
 document.getElementById("pass").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
 
 function render(){
-  document.title=`${content.herName} — ${content.anniversaryDate}`;
+  //document.title=`${content.herName} — ${content.anniversaryDate}`;
   heroEyebrow.textContent=content.hero.eyebrow;
   heroTitle.textContent=content.hero.title.replaceAll("HER NAME",content.herName);
   heroSubtitle.textContent=content.hero.subtitle;
   footerNames.textContent=`${content.yourName} × ${content.herName}`;
 
-  detailsGrid.innerHTML=content.details.map((x,i)=>`
-    <article class="card" onclick="this.querySelector('.reveal').classList.toggle('hidden')">
-      <div class="num">Detail ${String(i+1).padStart(2,"0")}</div>
-      <h3>${x.title}</h3>
-      <div class="reveal hidden">${x.text}</div>
-    </article>`).join("");
 
 timeline.innerHTML = content.timeline.map(x => `
   <div class="event">
     <div class="date">${x.date}</div>
-    <h3>${x.title}</h3>
-    <div>${x.text}</div>
+    <h3 >${x.title}</h3>
+    <h3>${x.text}</h3>
 
     ${x.photo ? `
       <img
@@ -138,11 +131,6 @@ timeline.innerHTML = content.timeline.map(x => `
   quote.textContent=content.littleThings;
   distanceTitle.textContent=content.distance.title;
   distanceText.textContent=content.distance.text;
-
-  songs.innerHTML=content.songs.map(x=>`
-    <article class="card">${x.url?`<a class="btn" href="${x.url}" target="_blank" style="text-decoration:none;display:inline-block">Open song</a>`:""}
-      <div class="num">Soundtrack</div><h3>${x.title}</h3><div class="reveal">${x.artist}</div>
-    </article>`).join("");
 
   photos.innerHTML = content.photos.map(item => {
   if (item.type === "video") {
@@ -167,9 +155,7 @@ timeline.innerHTML = content.timeline.map(x => `
 }).join("");
 
 
-
-  letter.textContent=content.letter.replaceAll("HER NAME",content.herName).replaceAll("YOUR NAME",content.yourName);  
-  finalReveal.textContent=content.final.reveal;
+  letter.textContent=content.letter.replaceAll("HER NAME",content.herName).replaceAll("YOUR NAME",content.yourName);    
 }
 
 
@@ -279,7 +265,7 @@ function startMemoryHighlights() {
       // Show photo for 4.5 seconds
       timer = setTimeout(() => {
         showNext();
-      }, 4500);
+      }, 2000);
     }
   }
 
@@ -318,7 +304,7 @@ function startMemoryHighlights() {
 
     timer = setTimeout(() => {
       showNext();
-    }, 4500);
+    }, 2000);
   }
 }
 
