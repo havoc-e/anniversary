@@ -168,6 +168,11 @@ function fadeMusicTo(target, duration = 800) {
 
   clearInterval(musicFadeTimer);
 
+  // Make sure background music is playing
+  if (music.paused) {
+    music.play().catch(() => {});
+  }
+
   const startVolume = music.volume;
   const difference = target - startVolume;
   const steps = 20;
