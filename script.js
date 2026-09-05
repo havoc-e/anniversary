@@ -168,11 +168,6 @@ function fadeMusicTo(target, duration = 800) {
 
   clearInterval(musicFadeTimer);
 
-  // Make sure background music is playing
-  if (music.paused) {
-    music.play().catch(() => {});
-  }
-
   const startVolume = music.volume;
   const difference = target - startVolume;
   const steps = 20;
@@ -199,7 +194,6 @@ function startMemoryHighlights() {
   let current = 0;
   let timer = null;
 
-  // Hide everything first
   media.forEach(item => {
     item.classList.remove("active");
 
@@ -211,106 +205,115 @@ function startMemoryHighlights() {
 
   function showNext() {
 
-    // Hide current
-    media[current].classList.remove("active");
+    const currentItem = media[current];
 
-    if (media[current].tagName === "VIDEO") {
-      media[current].pause();
-      media[current].currentTime = 0;
+    currentItem.classList.remove("active");
+
+    if (currentItem.tagName === "VIDEO") {
+      currentItem.pause();
+      currentItem.currentTime = 0;
     }
 
-    // Move to next
     current = (current + 1) % media.length;
 
     const next = media[current];
 
-    // Show next
     next.classList.add("active");
-
 
     // =========================
     // VIDEO
     // =========================
+    if (next.tagName === "VIDEO") {
 
-if (next.tagName === "VIDEO") {
+      const music = document.getElementById("backgroundMusic");
 
-  const music = document.getElementById("backgroundMusic");
+      // iPhone/Safari: pause background music
+      // so the video can play with sound reliably.
+      if (music) {
+        fadeMusicTo(0, 500);
 
-  // Lower background music, but DON'T pause it
-  fadeMusicTo(0.05, 800);
+        setTimeout(() => {
+          music.pause();
+        }, 500);
+      }
 
-  next.currentTime = 0;
-  next.muted = false;
-  next.volume = 1;
+      next.currentTime = 0;
+      next.muted = false;
+      next.volume = 1;
 
-  next.play().catch(error => {
-    console.log("Video playback blocked:", error);
-  });
+      next.play().catch(error => {
+        console.log("Video playback blocked:", error);
+      });
 
-  next.onended = () => {
+      next.onended = () => {
 
-    // Bring background music back
-    fadeMusicTo(0.30, 800);
+        // Resume background music
+        if (music) {
+          music.volume = 0;
+          music.play().catch(() => {});
+          fadeMusicTo(0.30, 800);
+        }
 
-    showNext();
-  };
-}
-
+        showNext();
+      };
+    }
 
     // =========================
     // PHOTO
     // =========================
-
     else {
 
-      // Normal music volume
       fadeMusicTo(0.30, 800);
 
       clearTimeout(timer);
 
-      // Show photo for 4.5 seconds
       timer = setTimeout(() => {
         showNext();
-      }, 2000);
+      }, 4000);
     }
   }
 
-
   // =========================
-  // START FIRST ITEM
+  // FIRST ITEM
   // =========================
 
   const first = media[0];
 
   first.classList.add("active");
 
-
   if (first.tagName === "VIDEO") {
 
-    fadeMusicTo(0.05, 800);
+    const music = document.getElementById("backgroundMusic");
+
+    if (music) {
+      music.pause();
+    }
 
     first.muted = false;
     first.volume = 1;
 
     first.play().catch(error => {
-      console.log("Video autoplay blocked:", error);
+      console.log("Video playback blocked:", error);
     });
 
     first.onended = () => {
 
-      fadeMusicTo(0.30, 800);
+      if (music) {
+        music.volume = 0;
+        music.play().catch(() => {});
+        fadeMusicTo(0.30, 800);
+      }
 
       showNext();
     };
 
   } else {
 
-    // First item is a photo
     fadeMusicTo(0.30, 800);
 
     timer = setTimeout(() => {
       showNext();
-    }, 2000);
+    }, 4000);
   }
 }
 
