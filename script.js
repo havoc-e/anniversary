@@ -2,7 +2,7 @@
    EDIT ONLY THIS SECTION
    ============================================================ */
 const content = {
-  password: "1",
+  password: "SIP",
 
   herName: "Sarah Zahalane",
   yourName: "Hani Eid",
@@ -11,7 +11,7 @@ const content = {
   hero: {
     eyebrow: "A little world I made for you",
     title: "Happy Anniversary, hayete❤️",
-    subtitle: "Even from different places, there are a thousand little ways to be close."
+    subtitle: "Even from different places, there are little ways to be close."
   },
 
   details: [
@@ -34,9 +34,9 @@ const content = {
     {date:"NOV 19, 2017", title:"First Instagram message", text:"", photo:"photos/photo-19.png"},
     {date:"JUN 23, 2018", title:"First WhatsApp message", text:"", photo:"photos/photo-18.jpg"},
     {date:"AUG 16, 2018", title:"First WhatsApp picture", text:"", photo:"photos/photo-17.jpg"},
-    {date:"SEP 04, 2023", title:"A moment that changed things (For me at least🙄)", text:"Date at SIP."},
-    {date:"AUG 28, 2024", title:"So Stressed", text:"Date at Steak Bar Sushi."},
-    {date:"SEP 03, 2024", title:"Anniversary", text:"Date at Kalei.", photo:"photos/photo-1.jpg"}
+    {date:"SEP 04, 2023", title:"Date at SIP", text:"A moment that changed things (For me at least🙄)"},
+    {date:"AUG 28, 2024", title:"Date at Steak Bar Sushi", text:"I was so stressed that day because I wanted everything to be just right. I wanted you to be happy, I wanted the moment to be special, and more than anything, I wanted everything between us to work out"},
+    {date:"SEP 03, 2024", title:"Date at Kalei", text:"Anniversary", photo:"photos/photo-1.jpg"}
   ],
 
   littleThings: "There are so many little things about you that I don't think you realize I notice. The way your laugh changes when something genuinely catches you off guard, the little words and expressions you use without thinking, the way you get excited when you're talking about something you love. I notice the way your mood shows in the smallest things, the way you care about details, and all those small pieces of you that might seem ordinary to everyone else, but to me, they're not ordinary at all. They're the little things that make you you, and somehow, after two years, I still find myself loving you a little more because of them.",
@@ -91,7 +91,7 @@ Happy 2nd anniversary, hayete❤️`,
 
 function unlock(){
   const value=document.getElementById("pass").value;
-  if(value===content.password){
+  if(value.toLowerCase() === content.password.toLowerCase()){
     document.getElementById("gate").style.display="none";
     document.getElementById("site").style.display="block";
 
